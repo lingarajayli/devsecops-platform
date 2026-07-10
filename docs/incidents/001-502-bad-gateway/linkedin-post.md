@@ -4,17 +4,18 @@ Today I documented a production-style incident: `502 Bad Gateway`.
 
 A 502 usually means the load balancer, reverse proxy, gateway, or ingress controller cannot get a valid response from the upstream backend service.
 
-My troubleshooting approach:
+In a Kubernetes-based setup, I would check:
 
-1. Confirm scope and impact
-2. Check monitoring for 5xx errors
-3. Check load balancer or ingress health
-4. Review NGINX/reverse proxy logs
-5. Check backend application health
-6. Verify service endpoints
-7. Check recent deployments or config changes
-8. Apply the safest fix
-9. Monitor recovery
+1. Ingress or NGINX logs
+2. Backend pod status
+3. Kubernetes Service endpoints
+4. Readiness probes
+5. Recent deployments
+6. Service port and targetPort mapping
+
+One common root cause:
+
+The application listens on port `8080`, but the Kubernetes Service is configured with `targetPort: 8000`.
 
 Key lesson:
 
@@ -24,4 +25,9 @@ Troubleshoot using evidence:
 
 Observe → Hypothesize → Verify → Act
 
-This is part of my DevSecOps platform portfolio where I’m documenting real production-style incidents, runbooks, and troubleshooting approaches.
+I’m documenting these production-style incidents as part of my DevSecOps platform portfolio.
+
+GitHub repo:
+https://github.com/lingarajayli/devsecops-platform
+
+#DevOps #DevSecOps #Kubernetes #SRE #PlatformEngineering #Linux #CloudEngineering
