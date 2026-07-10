@@ -15,6 +15,13 @@ These labs are designed for:
 
 ---
 
+## Setup Guide
+
+Before running any lab, complete the setup guide:
+
+```text
+labs/kubernetes/SETUP.md
+
 ## Why These Labs Matter
 
 Reading incident notes builds understanding.
