@@ -47,43 +47,44 @@ flowchart LR
 
 ## Mindmap
 
+## Troubleshooting Map
+
 ```mermaid
-mindmap
-  root((OOMKilled))
-    Meaning
-      Container exceeded memory limit
-      Linux killed the process
-      Kubernetes restarted container
-    Common Causes
-      Memory leak
-      Low memory limit
-      High traffic spike
-      Large file processing
-      Bad JVM heap settings
-      Inefficient code
-      Missing resource tuning
-    Investigation
-      Check pod status
-      Describe pod
-      Check last state
-      Check restart count
-      Check memory limits
-      Check memory usage graphs
-      Check application logs
-      Check recent deployments
-    Remediation
-      Increase memory limit carefully
-      Fix memory leak
-      Tune application memory
-      Reduce workload size
-      Roll back bad deployment
-    Prevention
-      Set proper requests and limits
-      Monitor memory usage
-      Alert on restarts
-      Load test before release
-      Profile memory usage
-      Review resource sizing
+flowchart TB
+    A[OOMKilled]
+
+    A --> B[Meaning]
+    A --> C[Common Causes]
+    A --> D[Investigation]
+    A --> E[Remediation]
+    A --> F[Prevention]
+
+    B --> B1[Container exceeded memory limit]
+    B --> B2[Linux OOM killer terminated process]
+    B --> B3[Kubernetes restarted the container]
+
+    C --> C1[Memory leak]
+    C --> C2[Low memory limit]
+    C --> C3[Traffic spike]
+    C --> C4[Large file processing]
+    C --> C5[Bad JVM heap settings]
+
+    D --> D1[Check pod status]
+    D --> D2[Describe pod]
+    D --> D3[Check last state]
+    D --> D4[Check restart count]
+    D --> D5[Check memory usage]
+    D --> D6[Check previous logs]
+
+    E --> E1[Increase limit carefully]
+    E --> E2[Fix memory leak]
+    E --> E3[Tune runtime memory]
+    E --> E4[Rollback bad deployment]
+
+    F --> F1[Set proper requests and limits]
+    F --> F2[Monitor memory usage]
+    F --> F3[Alert on restarts]
+    F --> F4[Load test before release]
 ```
 
 ---
