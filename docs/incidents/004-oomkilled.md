@@ -86,6 +86,7 @@ flowchart TD
     F --> F2["Monitor memory usage"]
     F --> F3["Alert on restarts"]
     F --> F4["Load test before release"]
+```
 
 ---
 
