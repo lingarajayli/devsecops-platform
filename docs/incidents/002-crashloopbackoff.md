@@ -43,6 +43,47 @@ flowchart LR
 
 ---
 
+## Mindmap
+
+```mermaid
+mindmap
+  root((CrashLoopBackOff))
+    Meaning
+      Container starts
+      Container crashes
+      Kubernetes restarts it
+      Backoff delay increases
+    Common Causes
+      Missing environment variable
+      Wrong command or entrypoint
+      Missing ConfigMap or Secret
+      App runtime error
+      Database connection failure
+      Liveness probe failure
+      Low resource limits
+    Investigation
+      Check pod status
+      Check restart count
+      Check current logs
+      Check previous logs
+      Describe pod events
+      Check env variables
+      Check ConfigMaps and Secrets
+      Check probes
+    Remediation
+      Fix root cause
+      Update manifest
+      Restart rollout
+      Verify pod stability
+    Prevention
+      CI validation
+      Startup checks
+      Clear app logs
+      Proper probes
+      Restart count alerts
+```
+---
+
 ## Common Causes
 
 - Application exits due to runtime error
