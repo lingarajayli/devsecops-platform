@@ -30,17 +30,24 @@ The container was running, but it exceeded its memory limit.
 
 ## Request Flow
 
-```mermaid
-flowchart LR
-    User[User Traffic] --> App[Application Container]
-    App --> Memory[Memory Usage Increases]
-    Memory --> Limit[Memory Limit Reached]
-    Limit --> Kernel[Linux Kernel OOM Killer]
-    Kernel --> Kill[Container Killed]
-    Kill --> Restart[Kubernetes Restarts Container]
-    Restart --> Pod[Pod Running Again]
+## Request Flow
 
-    Kill -. Last State .-> OOM[OOMKilled]
+```mermaid
+flowchart TD
+    A[Application starts]
+    B[Memory usage increases]
+    C[Memory limit reached]
+    D[Linux OOM killer acts]
+    E[Container killed]
+    F[Pod shows OOMKilled]
+    G[Kubernetes restarts container]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
 ```
 
 ---
@@ -49,39 +56,39 @@ flowchart LR
 
 ## Troubleshooting Map
 
+## Troubleshooting Map
+
 ```mermaid
-flowchart TB
+flowchart TD
     A[OOMKilled]
 
-    A --> B[Meaning]
-    A --> C[Common Causes]
-    A --> D[Investigation]
-    A --> E[Remediation]
-    A --> F[Prevention]
-
+    A --> B[What it means]
     B --> B1[Container exceeded memory limit]
-    B --> B2[Linux OOM killer terminated process]
+    B --> B2[Linux killed the process]
     B --> B3[Kubernetes restarted the container]
 
+    A --> C[Why it happens]
     C --> C1[Memory leak]
     C --> C2[Low memory limit]
     C --> C3[Traffic spike]
     C --> C4[Large file processing]
     C --> C5[Bad JVM heap settings]
 
-    D --> D1[Check pod status]
-    D --> D2[Describe pod]
-    D --> D3[Check last state]
-    D --> D4[Check restart count]
+    A --> D[How to investigate]
+    D --> D1[kubectl describe pod]
+    D --> D2[Check last state]
+    D --> D3[Check restart count]
+    D --> D4[kubectl logs --previous]
     D --> D5[Check memory usage]
-    D --> D6[Check previous logs]
 
-    E --> E1[Increase limit carefully]
-    E --> E2[Fix memory leak]
-    E --> E3[Tune runtime memory]
+    A --> E[How to fix]
+    E --> E1[Fix memory leak]
+    E --> E2[Tune memory settings]
+    E --> E3[Increase limit carefully]
     E --> E4[Rollback bad deployment]
 
-    F --> F1[Set proper requests and limits]
+    A --> F[How to prevent]
+    F --> F1[Set correct requests and limits]
     F --> F2[Monitor memory usage]
     F --> F3[Alert on restarts]
     F --> F4[Load test before release]
