@@ -86,24 +86,6 @@ flowchart TD
     F --> F2["Monitor memory usage"]
     F --> F3["Alert on restarts"]
     F --> F4["Load test before release"]
-```
-
-## Troubleshooting Map
-
-```mermaid
-flowchart TD
-    A["OOMKilled"]
-
-    A --> B["Meaning<br/>• Container exceeded memory limit<br/>• Linux OOM killer terminated process<br/>• Kubernetes restarted the container"]
-
-    B --> C["Common Causes<br/>• Memory leak<br/>• Low memory limit<br/>• Traffic spike<br/>• Large file processing<br/>• Bad JVM heap settings"]
-
-    C --> D["Investigation<br/>• kubectl describe pod<br/>• Check last state<br/>• Check restart count<br/>• kubectl logs --previous<br/>• Check memory usage"]
-
-    D --> E["Remediation<br/>• Fix memory leak<br/>• Tune runtime memory<br/>• Increase memory limit carefully<br/>• Rollback bad deployment"]
-
-    E --> F["Prevention<br/>• Set correct requests and limits<br/>• Monitor memory usage<br/>• Alert on restarts<br/>• Load test before release"]
-```
 
 ---
 
