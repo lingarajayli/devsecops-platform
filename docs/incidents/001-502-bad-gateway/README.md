@@ -114,3 +114,19 @@ A `502 Bad Gateway` usually means the gateway, reverse proxy, load balancer, or 
 ## Key Takeaway
 
 A 502 usually points to a problem between the proxy/gateway layer and the backend application.
+
+## Request Flow
+
+```mermaid
+flowchart LR
+    User[User Browser] --> DNS[DNS Resolution]
+    DNS --> LB[Load Balancer]
+    LB --> Proxy[Reverse Proxy / Ingress / NGINX]
+    Proxy --> Service[Kubernetes Service]
+    Service --> Pod[Backend Pod / Application]
+    Pod --> DB[(Database / Cache)]
+
+    Proxy -. 502 Bad Gateway .-> Pod
+```
+
+A `502 Bad Gateway` usually happens between the proxy/gateway layer and the backend application.
