@@ -30,8 +30,6 @@ The container was running, but it exceeded its memory limit.
 
 ## Request Flow
 
-## Request Flow
-
 ```mermaid
 flowchart TD
     A[Application starts]
@@ -51,10 +49,6 @@ flowchart TD
 ```
 
 ---
-
-## Mindmap
-
-## Troubleshooting Map
 
 ## Troubleshooting Map
 
