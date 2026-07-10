@@ -54,38 +54,23 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[OOMKilled]
+    A["OOMKilled"]
 
-    A --> B[What it means]
-    B --> B1[Container exceeded memory limit]
-    B --> B2[Linux killed the process]
-    B --> B3[Kubernetes restarted the container]
+    B["Meaning<br/>Container exceeded memory limit<br/>Linux OOM killer terminated the process<br/>Kubernetes restarted the container"]
 
-    A --> C[Why it happens]
-    C --> C1[Memory leak]
-    C --> C2[Low memory limit]
-    C --> C3[Traffic spike]
-    C --> C4[Large file processing]
-    C --> C5[Bad JVM heap settings]
+    C["Common Causes<br/>Memory leak<br/>Low memory limit<br/>Traffic spike<br/>Large file processing<br/>Bad JVM heap settings"]
 
-    A --> D[How to investigate]
-    D --> D1[kubectl describe pod]
-    D --> D2[Check last state]
-    D --> D3[Check restart count]
-    D --> D4[kubectl logs --previous]
-    D --> D5[Check memory usage]
+    D["Investigation<br/>kubectl describe pod<br/>Check last state<br/>Check restart count<br/>kubectl logs --previous<br/>Check memory usage"]
 
-    A --> E[How to fix]
-    E --> E1[Fix memory leak]
-    E --> E2[Tune memory settings]
-    E --> E3[Increase limit carefully]
-    E --> E4[Rollback bad deployment]
+    E["Remediation<br/>Fix memory leak<br/>Tune runtime memory<br/>Increase memory limit carefully<br/>Rollback bad deployment"]
 
-    A --> F[How to prevent]
-    F --> F1[Set correct requests and limits]
-    F --> F2[Monitor memory usage]
-    F --> F3[Alert on restarts]
-    F --> F4[Load test before release]
+    F["Prevention<br/>Set correct requests and limits<br/>Monitor memory usage<br/>Alert on restarts<br/>Load test before release"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
 ```
 
 ---
