@@ -56,21 +56,53 @@ flowchart TD
 flowchart TD
     A["OOMKilled"]
 
-    B["Meaning<br/>Container exceeded memory limit<br/>Linux OOM killer terminated the process<br/>Kubernetes restarted the container"]
+    A --> B["Meaning"]
+    B --> B1["Container exceeded memory limit"]
+    B --> B2["Linux OOM killer terminated process"]
+    B --> B3["Kubernetes restarted the container"]
 
-    C["Common Causes<br/>Memory leak<br/>Low memory limit<br/>Traffic spike<br/>Large file processing<br/>Bad JVM heap settings"]
+    A --> C["Common Causes"]
+    C --> C1["Memory leak"]
+    C --> C2["Low memory limit"]
+    C --> C3["Traffic spike"]
+    C --> C4["Large file processing"]
+    C --> C5["Bad JVM heap settings"]
 
-    D["Investigation<br/>kubectl describe pod<br/>Check last state<br/>Check restart count<br/>kubectl logs --previous<br/>Check memory usage"]
+    A --> D["Investigation"]
+    D --> D1["kubectl describe pod"]
+    D --> D2["Check last state"]
+    D --> D3["Check restart count"]
+    D --> D4["kubectl logs --previous"]
+    D --> D5["Check memory usage"]
 
-    E["Remediation<br/>Fix memory leak<br/>Tune runtime memory<br/>Increase memory limit carefully<br/>Rollback bad deployment"]
+    A --> E["Remediation"]
+    E --> E1["Fix memory leak"]
+    E --> E2["Tune runtime memory"]
+    E --> E3["Increase memory limit carefully"]
+    E --> E4["Rollback bad deployment"]
 
-    F["Prevention<br/>Set correct requests and limits<br/>Monitor memory usage<br/>Alert on restarts<br/>Load test before release"]
+    A --> F["Prevention"]
+    F --> F1["Set correct requests and limits"]
+    F --> F2["Monitor memory usage"]
+    F --> F3["Alert on restarts"]
+    F --> F4["Load test before release"]
+```
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
+## Troubleshooting Map
+
+```mermaid
+flowchart TD
+    A["OOMKilled"]
+
+    A --> B["Meaning<br/>• Container exceeded memory limit<br/>• Linux OOM killer terminated process<br/>• Kubernetes restarted the container"]
+
+    B --> C["Common Causes<br/>• Memory leak<br/>• Low memory limit<br/>• Traffic spike<br/>• Large file processing<br/>• Bad JVM heap settings"]
+
+    C --> D["Investigation<br/>• kubectl describe pod<br/>• Check last state<br/>• Check restart count<br/>• kubectl logs --previous<br/>• Check memory usage"]
+
+    D --> E["Remediation<br/>• Fix memory leak<br/>• Tune runtime memory<br/>• Increase memory limit carefully<br/>• Rollback bad deployment"]
+
+    E --> F["Prevention<br/>• Set correct requests and limits<br/>• Monitor memory usage<br/>• Alert on restarts<br/>• Load test before release"]
 ```
 
 ---
