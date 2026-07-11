@@ -1,0 +1,1 @@
+deployment "service-endpoint-demo" successfully rolled out

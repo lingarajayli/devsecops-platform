@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"service-endpoint-demo","namespace":"incident-labs"},"spec":{"ports":[{"port":80,"targetPort":80}],"selector":{"app":"wrong-backend-demo"},"type":"ClusterIP"}}
+  creationTimestamp: "2026-07-11T21:37:14Z"
+  name: service-endpoint-demo
+  namespace: incident-labs
+  resourceVersion: "30221"
+  uid: db9835cf-6d13-4ab2-8fd3-2d0f8f911c6e
+spec:
+  clusterIP: 10.96.242.64
+  clusterIPs:
+  - 10.96.242.64
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: wrong-backend-demo
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

@@ -1,0 +1,2 @@
+NAME                    ENDPOINTS       AGE
+service-endpoint-demo   10.244.0.5:80   30m
