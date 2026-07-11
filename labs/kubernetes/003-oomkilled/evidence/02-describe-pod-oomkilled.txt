@@ -1,0 +1,71 @@
+Name:             oom-demo-6c9c656f49-5m5lg
+Namespace:        incident-labs
+Priority:         0
+Service Account:  default
+Node:             devsecops-lab-control-plane/172.20.0.2
+Start Time:       Sat, 11 Jul 2026 15:43:00 +0000
+Labels:           app=oom-demo
+                  pod-template-hash=6c9c656f49
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.9
+IPs:
+  IP:           10.244.0.9
+Controlled By:  ReplicaSet/oom-demo-6c9c656f49
+Containers:
+  app:
+    Container ID:  containerd://b13ae5843d4b02d0380704f00f453620f9b22908f9b7350c8943724344623689
+    Image:         python:3.13-alpine
+    Image ID:      docker.io/library/python@sha256:399babc8b49529dabfd9c922f2b5eea81d611e4512e3ed250d75bd2e7683f4b0
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      python
+      -c
+      print("Starting memory allocation test...")
+      data = []
+      while True:
+          data.append("x" * 1024 * 1024)
+      
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       OOMKilled
+      Exit Code:    137
+      Started:      Sat, 11 Jul 2026 18:29:28 +0000
+      Finished:     Sat, 11 Jul 2026 18:29:29 +0000
+    Ready:          False
+    Restart Count:  37
+    Limits:
+      cpu:     100m
+      memory:  32Mi
+    Requests:
+      cpu:        50m
+      memory:     16Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-j7j8h (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-j7j8h:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason   Age                    From     Message
+  ----     ------   ----                   ----     -------
+  Normal   Created  45m (x30 over 169m)    kubelet  spec.containers{app}: Container created
+  Normal   Pulled   4m10s (x37 over 169m)  kubelet  spec.containers{app}: Container image "python:3.13-alpine" already present on machine and can be accessed by the pod
+  Warning  BackOff  4m7s (x148 over 169m)  kubelet  spec.containers{app}: Back-off restarting failed container app in pod oom-demo-6c9c656f49-5m5lg_incident-labs(2d07dd8d-e7b8-4974-8198-90a038a74b43)
