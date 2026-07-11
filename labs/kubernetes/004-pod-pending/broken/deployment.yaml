@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pending-demo
+  namespace: incident-labs
+  labels:
+    app: pending-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pending-demo
+  template:
+    metadata:
+      labels:
+        app: pending-demo
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27-alpine
+          resources:
+            requests:
+              cpu: "100"
+              memory: "128Gi"
+            limits:
+              cpu: "100"
+              memory: "128Gi"
