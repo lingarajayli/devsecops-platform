@@ -104,7 +104,7 @@ The cluster should have at least one Ready node.
 | 001 | CrashLoopBackOff | App crash, logs, restart count | Completed |
 | 002 | ImagePullBackOff | Wrong image, registry failure | Completed |
 | 003 | OOMKilled | Memory limits, OOM killer | Completed |
-| 004 | Pod Pending | Scheduling, resources, taints | Planned |
+| 004 | Pod Pending | Scheduling, resources, taints | Completed |
 | 005 | Service Endpoints Empty | Selectors, labels, readiness | Planned |
 | 006 | Readiness Probe Failure | Health checks, traffic routing | Planned |
 | 007 | Ingress 404/503 | Ingress routing, services, endpoints | Planned |
