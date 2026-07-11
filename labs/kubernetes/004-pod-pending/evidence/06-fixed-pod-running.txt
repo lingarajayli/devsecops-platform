@@ -1,0 +1,2 @@
+NAME                            READY   STATUS    RESTARTS   AGE    IP           NODE                          NOMINATED NODE   READINESS GATES
+pending-demo-85f97468b6-5zfxq   1/1     Running   0          106s   10.244.0.6   devsecops-lab-control-plane   <none>           <none>

@@ -1,0 +1,2 @@
+NAME                            READY   STATUS    RESTARTS   AGE     IP       NODE     NOMINATED NODE   READINESS GATES
+pending-demo-79c5b8655f-k47hg   0/1     Pending   0          3m44s   <none>   <none>   <none>           <none>

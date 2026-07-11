@@ -1,0 +1,44 @@
+Name:             pending-demo-79c5b8655f-k47hg
+Namespace:        incident-labs
+Priority:         0
+Service Account:  default
+Node:             <none>
+Labels:           app=pending-demo
+                  pod-template-hash=79c5b8655f
+Annotations:      <none>
+Status:           Pending
+IP:               
+IPs:              <none>
+Controlled By:    ReplicaSet/pending-demo-79c5b8655f
+Containers:
+  app:
+    Image:      nginx:1.27-alpine
+    Port:       <none>
+    Host Port:  <none>
+    Limits:
+      cpu:     100
+      memory:  128Gi
+    Requests:
+      cpu:        100
+      memory:     128Gi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-ww27f (ro)
+Conditions:
+  Type           Status
+  PodScheduled   False 
+Volumes:
+  kube-api-access-ww27f:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason            Age    From               Message
+  ----     ------            ----   ----               -------
+  Warning  FailedScheduling  4m13s  default-scheduler  0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.

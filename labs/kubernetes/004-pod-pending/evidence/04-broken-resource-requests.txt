@@ -1,0 +1,1 @@
+{"limits":{"cpu":"100","memory":"128Gi"},"requests":{"cpu":"100","memory":"128Gi"}}
