@@ -101,7 +101,7 @@ The cluster should have at least one Ready node.
 
 | Lab | Incident | Focus Area | Status |
 |---|---|---|---|
-| 001 | CrashLoopBackOff | App crash, logs, restart count | Planned |
+| 001 | CrashLoopBackOff | App crash, logs, restart count | Completed |
 | 002 | ImagePullBackOff | Wrong image, registry failure | Planned |
 | 003 | OOMKilled | Memory limits, OOM killer | Planned |
 | 004 | Pod Pending | Scheduling, resources, taints | Planned |
