@@ -1,0 +1,2 @@
+NAME                             READY   STATUS    RESTARTS   AGE
+readiness-demo-6b5f6878b-pr7bx   0/1     Running   0          9h

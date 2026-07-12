@@ -1,0 +1,2 @@
+NAME                              READY   STATUS    RESTARTS   AGE
+readiness-demo-6557769bcb-rshv8   1/1     Running   0          59s
