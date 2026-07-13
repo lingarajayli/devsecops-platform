@@ -1,0 +1,13 @@
+Name:             ingress-demo
+Labels:           <none>
+Namespace:        incident-labs
+Address:          
+Ingress Class:    <none>
+Default backend:  <default>
+Rules:
+  Host        Path  Backends
+  ----        ----  --------
+  demo.local  
+              /app   wrong-ingress-demo:80 (<error: services "wrong-ingress-demo" not found>)
+Annotations:  <none>
+Events:       <none>

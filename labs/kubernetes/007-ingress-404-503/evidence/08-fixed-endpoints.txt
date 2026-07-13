@@ -1,0 +1,2 @@
+NAME           ENDPOINTS       AGE
+ingress-demo   10.244.0.5:80   3m21s

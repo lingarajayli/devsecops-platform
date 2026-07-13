@@ -1,0 +1,2 @@
+NAME                            READY   STATUS    RESTARTS   AGE     LABELS
+ingress-demo-77559bdd5f-bwg26   1/1     Running   0          2m34s   app=ingress-demo,pod-template-hash=77559bdd5f
