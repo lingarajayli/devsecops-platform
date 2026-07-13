@@ -1,0 +1,55 @@
+Name:             imagepull-demo-8fc4655cd-22jtn
+Namespace:        incident-labs
+Priority:         0
+Service Account:  default
+Node:             devsecops-lab-control-plane/172.20.0.2
+Start Time:       Sat, 11 Jul 2026 08:40:11 +0000
+Labels:           app=imagepull-demo
+                  pod-template-hash=8fc4655cd
+Annotations:      <none>
+Status:           Pending
+IP:               10.244.0.7
+IPs:
+  IP:           10.244.0.7
+Controlled By:  ReplicaSet/imagepull-demo-8fc4655cd
+Containers:
+  app:
+    Container ID:   
+    Image:          nginx:does-not-exist
+    Image ID:       
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       ImagePullBackOff
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-xvkqx (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-xvkqx:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                     From               Message
+  ----     ------     ----                    ----               -------
+  Normal   Scheduled  6h44m                   default-scheduler  Successfully assigned incident-labs/imagepull-demo-8fc4655cd-22jtn to devsecops-lab-control-plane
+  Normal   Pulling    11m (x5 over 6h44m)     kubelet            spec.containers{app}: Pulling image "nginx:does-not-exist"
+  Warning  Failed     11m (x5 over 6h44m)     kubelet            spec.containers{app}: Failed to pull image "nginx:does-not-exist": rpc error: code = NotFound desc = failed to pull and unpack image "docker.io/library/nginx:does-not-exist": failed to resolve reference "docker.io/library/nginx:does-not-exist": docker.io/library/nginx:does-not-exist: not found
+  Warning  Failed     11m (x5 over 6h44m)     kubelet            spec.containers{app}: Error: ErrImagePull
+  Normal   BackOff    4m40s (x42 over 6h44m)  kubelet            spec.containers{app}: Back-off pulling image "nginx:does-not-exist"
+  Warning  Failed     4m40s (x42 over 6h44m)  kubelet            spec.containers{app}: Error: ImagePullBackOff
