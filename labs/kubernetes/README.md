@@ -107,7 +107,7 @@ The cluster should have at least one Ready node.
 | 004 | Pod Pending | Scheduling, resources, taints | Completed |
 | 005 | Service Endpoints Empty | Selectors, labels, readiness | Completed |
 | 006 | Readiness Probe Failure | Health checks, traffic routing | Completed |
-| 007 | Ingress 404/503 | Ingress routing, services, endpoints | Planned |
+| 007 | Ingress 404/503 | Ingress routing, services, endpoints | Completed |
 
 ---
 
