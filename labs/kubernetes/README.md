@@ -1,45 +1,67 @@
-# Kubernetes Incident Labs
+# Kubernetes Troubleshooting Labs
 
-This directory contains hands-on Kubernetes troubleshooting labs.
-
-The goal is to convert production-style incident notes into practical local labs that can be reproduced, debugged, fixed, and documented.
-
-These labs are designed for:
-
-- DevOps Engineers
-- DevSecOps Engineers
-- SREs
-- Platform Engineers
-- Kubernetes interview preparation
-- GitHub portfolio proof
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Troubleshooting-326CE5?logo=kubernetes&logoColor=white)
+![Kind](https://img.shields.io/badge/Kind-Local%20Cluster-009688)
+![kubectl](https://img.shields.io/badge/kubectl-CLI-326CE5?logo=kubernetes&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Required-2496ED?logo=docker&logoColor=white)
+![Status](https://img.shields.io/badge/Series%2001-Completed-success)
+![Cloud Cost](https://img.shields.io/badge/Cloud%20Cost-%E2%82%B90-success)
 
 ---
 
-## Setup Guide
+## Overview
 
-Before running any lab, complete the setup guide:
+This directory contains hands-on Kubernetes troubleshooting labs.
+
+Each lab intentionally creates a broken Kubernetes scenario, then walks through investigation, root cause analysis, fix, verification, and evidence capture.
+
+These labs are designed for:
 
 ```text
-labs/kubernetes/SETUP.md
+DevOps Engineers
+DevSecOps Engineers
+SREs
+Platform Engineers
+Kubernetes interview preparation
+GitHub portfolio proof
+```
+
+> [!NOTE]
+> These are not only YAML examples. These are production-style incident simulations.
+
+---
 
 ## Why These Labs Matter
 
-Reading incident notes builds understanding.
+In real production environments, Kubernetes issues are rarely solved by guessing.
 
-Reproducing incidents builds real troubleshooting skill.
+A good engineer must know how to inspect:
 
-In production, engineers are expected to:
+```text
+Pods
+Deployments
+Events
+Logs
+Services
+Endpoints
+Ingress
+Readiness probes
+Resource requests and limits
+```
 
-1. Understand the symptom
-2. Identify the failing layer
-3. Use the correct command
-4. Read events and logs
-5. Find the root cause
-6. Apply the safest fix
-7. Verify recovery
-8. Document the incident
+This lab series builds that troubleshooting muscle using a local Kind cluster.
 
-These labs are built around that same flow.
+```mermaid
+flowchart TD
+    A[Broken Kubernetes Resource] --> B[Observe Symptom]
+    B --> C[Inspect Status]
+    C --> D[Check Events and Logs]
+    D --> E[Find Root Cause]
+    E --> F[Apply Fix]
+    F --> G[Verify Recovery]
+    G --> H[Capture Evidence]
+    H --> I[Commit to GitHub]
+```
 
 ---
 
@@ -55,21 +77,30 @@ Real cloud accounts will be used only when explicitly required.
 
 ---
 
-## Tools
+## Tooling
 
 | Tool | Purpose |
 |---|---|
-| Docker | Base runtime for Kind and local cloud labs |
+| Docker | Base runtime for Kind and local labs |
 | Kind | Local Kubernetes cluster |
 | kubectl | Kubernetes CLI |
 | Helm | Kubernetes package management |
-| Floci | Local AWS/Azure-style cloud lab environment in Docker |
 | GitHub Actions | CI validation |
 | Trivy | Image vulnerability scanning |
 | Gitleaks | Secret scanning |
 | Semgrep | Static security scanning |
 | Prometheus | Metrics and monitoring |
 | Grafana | Dashboards |
+
+```mermaid
+flowchart LR
+    A[Docker] --> B[Kind]
+    B --> C[Kubernetes Cluster]
+    C --> D[kubectl]
+    D --> E[Troubleshooting Labs]
+    E --> F[Evidence]
+    F --> G[GitHub Portfolio]
+```
 
 ---
 
@@ -95,19 +126,58 @@ Expected result:
 The cluster should have at least one Ready node.
 ```
 
+Create the lab namespace:
+
+```bash
+kubectl create namespace incident-labs
+```
+
+Verify:
+
+```bash
+kubectl get namespace incident-labs
+```
+
 ---
 
 ## Lab List
 
 | Lab | Incident | Focus Area | Status |
 |---|---|---|---|
-| 001 | CrashLoopBackOff | App crash, logs, restart count | Completed |
-| 002 | ImagePullBackOff | Wrong image, registry failure | Completed |
-| 003 | OOMKilled | Memory limits, OOM killer | Completed |
-| 004 | Pod Pending | Scheduling, resources, taints | Completed |
-| 005 | Service Endpoints Empty | Selectors, labels, readiness | Completed |
-| 006 | Readiness Probe Failure | Health checks, traffic routing | Completed |
-| 007 | Ingress 404/503 | Ingress routing, services, endpoints | Completed |
+| 001 | [CrashLoopBackOff](001-crashloopbackoff/README.md) | App crash, logs, restart count | Completed |
+| 002 | [ImagePullBackOff](002-imagepullbackoff/README.md) | Wrong image, registry failure | Completed |
+| 003 | [OOMKilled](003-oomkilled/README.md) | Memory limits, OOM killer | Completed |
+| 004 | [Pod Pending](004-pod-pending/README.md) | Scheduling, resources, taints | Completed |
+| 005 | [Service Endpoints Empty](005-service-endpoints-empty/README.md) | Selectors, labels, readiness | Completed |
+| 006 | [Readiness Probe Failure](006-readiness-probe-failure/README.md) | Health checks, traffic routing | Completed |
+| 007 | [Ingress 404/503](007-ingress-404-503/README.md) | Ingress routing, services, endpoints | Completed |
+
+Series summary:
+
+```text
+SERIES-01-SUMMARY.md
+```
+
+---
+
+## Series 01 Coverage
+
+```mermaid
+mindmap
+  root((Kubernetes Troubleshooting))
+    Pod Lifecycle
+      CrashLoopBackOff
+      ImagePullBackOff
+      OOMKilled
+    Scheduling
+      Pod Pending
+    Services
+      Service Endpoints Empty
+    Health Checks
+      Readiness Probe Failure
+    Ingress
+      Ingress 404/503
+```
 
 ---
 
@@ -119,154 +189,257 @@ Each lab follows this folder pattern:
 labs/kubernetes/<lab-name>/
 ├── README.md
 ├── broken/
-│   └── manifests.yaml
+│   └── <manifest>.yaml
 ├── fixed/
-│   └── manifests.yaml
+│   └── <manifest>.yaml
 └── evidence/
-    └── .gitkeep
+    └── *.txt
 ```
 
-Example:
+Purpose of each folder:
 
-```text
-labs/kubernetes/001-crashloopbackoff/
-├── README.md
-├── broken/
-│   └── deployment.yaml
-├── fixed/
-│   └── deployment.yaml
-└── evidence/
-    └── .gitkeep
+| Path | Purpose |
+|---|---|
+| `README.md` | Explanation, commands, root cause, interview answer |
+| `broken/` | Manifest that intentionally creates the incident |
+| `fixed/` | Corrected manifest that resolves the incident |
+| `evidence/` | Captured command outputs proving investigation and fix |
+
+---
+
+## Standard Troubleshooting Flow
+
+Every lab follows this SRE-style flow:
+
+```mermaid
+flowchart TD
+    A[Deploy Broken Manifest] --> B[Confirm Symptom]
+    B --> C[Collect Evidence]
+    C --> D[Inspect Kubernetes Events]
+    D --> E[Inspect Logs if Available]
+    E --> F[Check Resource Configuration]
+    F --> G[Identify Root Cause]
+    G --> H[Apply Fixed Manifest]
+    H --> I[Verify Recovery]
+    I --> J[Save Evidence]
+    J --> K[Commit and Push]
 ```
 
 ---
 
-## Standard Lab Flow
-
-Each lab should be practiced like a real production incident.
-
-### 1. Deploy Broken Manifest
+## Key Commands Practiced
 
 ```bash
-kubectl apply -f broken/
+kubectl get pods -n incident-labs
+kubectl get pods -n incident-labs -o wide
+kubectl get pods -n incident-labs --show-labels
+kubectl describe pod <pod-name> -n incident-labs
+kubectl logs <pod-name> -n incident-labs
+kubectl logs <pod-name> -n incident-labs --previous
+kubectl get events -n incident-labs --sort-by=.lastTimestamp
+kubectl get deployment <deployment-name> -n incident-labs -o yaml
+kubectl get svc -n incident-labs
+kubectl describe svc <service-name> -n incident-labs
+kubectl get endpoints -n incident-labs
+kubectl get ingress -n incident-labs
+kubectl describe ingress <ingress-name> -n incident-labs
+kubectl rollout status deployment/<deployment-name> -n incident-labs
 ```
 
-### 2. Observe the Problem
+---
+
+## Traffic Troubleshooting Path
+
+For Service and Ingress issues, always troubleshoot the full path.
+
+```mermaid
+flowchart LR
+    A[Client Request] --> B[Ingress]
+    B --> C[Service]
+    C --> D[Endpoints]
+    D --> E[Ready Pods]
+    E --> F[Container]
+```
+
+If traffic fails, check in this order:
+
+```text
+1. Ingress host/path
+2. Ingress backend Service name and port
+3. Service exists
+4. Service selector
+5. Endpoints exist
+6. Pod labels match selector
+7. Pod is Ready
+8. Container logs
+```
+
+---
+
+## Common Lessons Learned
+
+### Running does not mean Ready
+
+A Pod can be:
+
+```text
+STATUS: Running
+READY: 0/1
+```
+
+This means the container process is alive, but Kubernetes will not route traffic to it.
+
+---
+
+### Logs are not always available
+
+For `ImagePullBackOff`, the container never starts.
+
+So this may not help:
 
 ```bash
-kubectl get pods
+kubectl logs <pod-name>
+```
+
+Better command:
+
+```bash
 kubectl describe pod <pod-name>
-kubectl get events --sort-by=.lastTimestamp
-```
-
-### 3. Investigate
-
-Use the correct commands based on the incident.
-
-Examples:
-
-```bash
-kubectl logs <pod-name>
-kubectl logs <pod-name> --previous
-kubectl get pod <pod-name> -o yaml
-kubectl describe deployment <deployment-name>
-```
-
-### 4. Fix the Issue
-
-```bash
-kubectl apply -f fixed/
-```
-
-### 5. Verify Recovery
-
-```bash
-kubectl get pods
-kubectl get events --sort-by=.lastTimestamp
-kubectl logs <pod-name>
-```
-
-### 6. Document Evidence
-
-Store screenshots, command outputs, or notes under:
-
-```text
-evidence/
 ```
 
 ---
 
-## Troubleshooting Rules
+### Events often reveal the real problem
 
-Always follow these rules:
+Events are critical for:
 
-1. Do not randomly delete pods first.
-2. Do not blindly restart workloads.
-3. Start with `kubectl get`.
-4. Then use `kubectl describe`.
-5. Read the Events section carefully.
-6. Use logs only when the container has started.
-7. Compare broken and fixed manifests.
-8. Verify after remediation.
-9. Document the root cause.
+```text
+ImagePullBackOff
+Pod Pending
+Readiness Probe Failure
+Ingress backend issues
+```
+
+Useful command:
+
+```bash
+kubectl get events -n incident-labs --sort-by=.lastTimestamp
+```
+
+---
+
+### Service depends on labels and selectors
+
+A Service sends traffic to Pods only when its selector matches Pod labels.
+
+```mermaid
+flowchart LR
+    A[Service Selector] --> B{Matches Pod Labels?}
+    B -- Yes --> C[Endpoints Created]
+    B -- No --> D[Endpoints Empty]
+    D --> E[Traffic Fails]
+```
 
 ---
 
 ## Interview Value
 
-After completing these labs, you should be able to explain:
+This lab series prepares for common Kubernetes troubleshooting interview questions:
 
-- What the incident means
-- Why it happens
-- Which command gives the strongest clue
-- What the root cause was
-- How you fixed it
-- How you would prevent it in production
-
----
-
-## Priority Order
-
-Recommended order:
-
-1. CrashLoopBackOff
-2. ImagePullBackOff
-3. OOMKilled
-4. Pod Pending
-5. Service Endpoints Empty
-6. Readiness Probe Failure
-7. Ingress 404/503
-
-This order builds troubleshooting skill from simple to advanced.
+```text
+How do you troubleshoot CrashLoopBackOff?
+How do you troubleshoot ImagePullBackOff?
+What does OOMKilled mean?
+Why is a Pod stuck in Pending?
+Why does a Service have no endpoints?
+Why is a Pod Running but not Ready?
+How do you troubleshoot Ingress 404 or 503?
+What is the difference between Running and Ready?
+What is the role of labels and selectors?
+What is the safest troubleshooting workflow during an incident?
+```
 
 ---
 
-## Portfolio Goal
+## Recruiter-Friendly Summary
 
-These labs prove that I can troubleshoot Kubernetes incidents hands-on, not just write theoretical notes.
+This Kubernetes lab series demonstrates hands-on ability to troubleshoot production-style incidents.
 
-Each lab will include:
+The work includes:
 
-- Broken manifest
-- Fixed manifest
-- Root cause explanation
-- Investigation commands
-- Evidence
-- Interview answer
-- Prevention steps
+```text
+Broken manifests
+Fixed manifests
+Root cause analysis
+kubectl investigation
+Evidence capture
+GitHub documentation
+Interview-ready explanations
+```
+
+It proves practical skills across:
+
+```text
+Pods
+Deployments
+Services
+Endpoints
+Ingress
+Readiness probes
+Resource limits
+Scheduling
+Events
+Logs
+```
 
 ---
 
-## Cloud Lab Direction
+## Completion Status
 
-Kubernetes labs will use **Kind**.
+```mermaid
+pie title Kubernetes Troubleshooting Labs Completion
+    "Completed" : 7
+    "Remaining" : 0
+```
 
-AWS and Azure labs will use **Floci in Docker** where possible.
+```text
+Series 01 Status: Completed
+Total labs: 7
+Completed labs: 7
+Cloud cost: ₹0
+```
 
-This keeps the portfolio:
+---
 
-- Free
-- Local-first
-- Reproducible
-- Safe from accidental cloud billing
-- Suitable for GitHub demonstration
+## Next Planned Series
+
+Recommended next section:
+
+```text
+Kubernetes Troubleshooting Labs: Series 02
+```
+
+Possible topics:
+
+```text
+DNS resolution failure
+ConfigMap error
+Secret error
+PVC pending
+Node NotReady
+DiskPressure
+Failed rollout
+Liveness probe failure
+NetworkPolicy traffic blocked
+Helm deployment failure
+```
+
+---
+
+## Related Summary
+
+Read the full completed series summary:
+
+```text
+labs/kubernetes/SERIES-01-SUMMARY.md
+```
