@@ -232,6 +232,55 @@ If a real secret is detected, I would:
 
 ---
 
+---
+
+## CI/CD Integration
+
+Gitleaks was also integrated with GitHub Actions.
+
+Workflow file:
+
+```text
+.github/workflows/gitleaks.yml
+```
+
+The workflow runs on:
+
+```text
+push to main
+pull requests to main
+manual workflow dispatch
+```
+
+The workflow uses:
+
+```yaml
+uses: gitleaks/gitleaks-action@v2
+```
+
+Why this matters:
+
+```text
+Local hooks help developers catch secrets early.
+GitHub Actions enforces scanning centrally in CI/CD.
+```
+
+This creates a stronger DevSecOps workflow:
+
+```mermaid
+flowchart TD
+    A[Developer writes code] --> B[Pre-commit hook]
+    B --> C[Commit]
+    C --> D[Pre-push hook]
+    D --> E[Push to GitHub]
+    E --> F[GitHub Actions Gitleaks Scan]
+    F --> G{Secrets Found?}
+    G -- Yes --> H[Fail Pipeline]
+    G -- No --> I[Pipeline Passes]
+```
+
+---
+
 ## Lab Status
 
 ```text
