@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Running Gitleaks pre-commit scan..."
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "ERROR: gitleaks is not installed."
+  echo "Install Gitleaks before committing."
+  exit 1
+fi
+
+gitleaks dir . --redact
+
+echo "Gitleaks pre-commit scan passed."

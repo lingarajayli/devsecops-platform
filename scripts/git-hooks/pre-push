@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Running Gitleaks pre-push Git history scan..."
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "ERROR: gitleaks is not installed."
+  echo "Install Gitleaks before pushing."
+  exit 1
+fi
+
+gitleaks detect --source . --redact
+
+echo "Gitleaks pre-push scan passed."
