@@ -1,0 +1,6 @@
+projectKey=sample-python-app
+serverUrl=http://localhost:9000
+serverVersion=26.7.0.124771
+dashboardUrl=http://localhost:9000/dashboard?id=sample-python-app
+ceTaskId=205bb9a9-19c6-40cd-9be7-b089f7c037fb
+ceTaskUrl=http://localhost:9000/api/ce/task?id=205bb9a9-19c6-40cd-9be7-b089f7c037fb
