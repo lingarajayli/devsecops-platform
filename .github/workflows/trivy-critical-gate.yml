@@ -1,0 +1,39 @@
+name: Trivy Critical Gate
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/trivy-critical-gate.yml"
+      - "labs/security/trivy/**"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/trivy-critical-gate.yml"
+      - "labs/security/trivy/**"
+
+  workflow_dispatch:
+
+jobs:
+  trivy-critical-gate:
+    name: Block Critical Vulnerabilities
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fail if CRITICAL vulnerabilities exist
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: nginx:stable-alpine
+          format: table
+          severity: CRITICAL
+          exit-code: 1
+          ignore-unfixed: false
