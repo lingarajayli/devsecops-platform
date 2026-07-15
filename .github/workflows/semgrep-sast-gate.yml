@@ -1,0 +1,36 @@
+name: Semgrep SAST Gate
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/semgrep-sast-gate.yml"
+      - "labs/security/semgrep/**"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/semgrep-sast-gate.yml"
+      - "labs/security/semgrep/**"
+
+  workflow_dispatch:
+
+jobs:
+  semgrep-sast-gate:
+    name: Block SAST Findings
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fail if Semgrep finds issues
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: auto
+          scan-paths: labs/security/semgrep/vulnerable-app/app-fixed.py
