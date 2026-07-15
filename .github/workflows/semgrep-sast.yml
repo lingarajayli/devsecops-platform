@@ -1,0 +1,36 @@
+name: Semgrep SAST Scan
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/semgrep-sast.yml"
+      - "labs/security/semgrep/**"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/semgrep-sast.yml"
+      - "labs/security/semgrep/**"
+
+  workflow_dispatch:
+
+jobs:
+  semgrep:
+    name: Run Semgrep SAST
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep scan on fixed app
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: auto
+          scan-paths: labs/security/semgrep/vulnerable-app/app-fixed.py
