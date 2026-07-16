@@ -74,6 +74,95 @@ mindmap
 
 ---
 
+## DevSecOps Security Portfolio
+
+Status:
+
+```text
+Completed security labs: 9
+Environment: Local Kind cluster + local Docker tooling
+Cloud cost: ₹0
+Focus: Practical DevSecOps evidence for GitHub portfolio and interviews
+```
+
+| Area | Tool | Purpose | Status |
+|---|---|---|---|
+| Secret Scanning | [Gitleaks](labs/security/gitleaks/README.md) | Detect hardcoded secrets before commit/push | Completed |
+| Container Security | [Trivy Image Scanning](labs/security/trivy-image-scanning/README.md) | Scan container images for vulnerabilities | Completed |
+| SAST | [Semgrep](labs/security/semgrep/README.md) | Detect insecure code patterns | Completed |
+| Code Quality / Security | [SonarQube](labs/security/sonarqube/README.md) | Analyze code quality and security issues | Completed |
+| Kubernetes Readiness | [kube-score](labs/security/kubernetes-scanning/kube-score/README.md) | Check Kubernetes production-readiness | Completed |
+| Kubernetes Misconfigurations | [Trivy K8s](labs/security/kubernetes-scanning/trivy-k8s/README.md) | Scan Kubernetes manifests for misconfigurations | Completed |
+| Kubernetes Security Posture | [Kubescape](labs/security/kubernetes-scanning/kubescape/README.md) | Scan against security framework controls | Completed |
+| Kubernetes Policy Enforcement | [Kyverno](labs/security/kubernetes-scanning/kyverno/README.md) | Block unsafe Kubernetes resources at admission time | Completed |
+| Runtime Threat Detection | [Falco](labs/security/kubernetes-scanning/falco/README.md) | Detect suspicious runtime activity | Completed |
+
+Full security index:
+
+```text
+labs/security/README.md
+```
+
+Kubernetes security series:
+
+```text
+labs/security/kubernetes-scanning/README.md
+```
+
+---
+
+## DevSecOps Security Workflow
+
+```mermaid
+flowchart TD
+    A[Source Code] --> B[Gitleaks]
+    A --> C[Semgrep]
+    A --> D[SonarQube]
+
+    E[Container Image] --> F[Trivy Image Scan]
+
+    G[Kubernetes Manifests] --> H[kube-score]
+    G --> I[Trivy K8s]
+    G --> J[Kubescape]
+
+    K[Kubernetes Admission] --> L[Kyverno]
+    M[Running Workloads] --> N[Falco]
+
+    B --> O[Prevent Secrets]
+    C --> P[Find Insecure Code]
+    D --> Q[Quality and Security Gate]
+    F --> R[Find Vulnerable Images]
+    H --> S[Production Readiness]
+    I --> T[Misconfiguration Findings]
+    J --> U[Security Posture Findings]
+    L --> V[Policy Enforcement]
+    N --> W[Runtime Alerts]
+```
+
+---
+
+## Security Portfolio Story
+
+```text
+Gitleaks    -> Prevent secrets from entering Git
+Trivy       -> Find vulnerable container images
+Semgrep     -> Detect insecure code patterns
+SonarQube   -> Improve code quality and security visibility
+kube-score  -> Check Kubernetes production-readiness
+Trivy K8s   -> Detect Kubernetes misconfigurations
+Kubescape   -> Validate security posture controls
+Kyverno     -> Enforce Kubernetes policies
+Falco       -> Detect runtime threats
+```
+
+This demonstrates a complete DevSecOps flow:
+
+```text
+Prevent -> Scan -> Analyze -> Enforce -> Detect
+```
+
+---
+
 ## Current Major Milestone
 
 ### Kubernetes Troubleshooting Labs: Series 01
@@ -174,6 +263,7 @@ Incident notes are written using this structure:
 | Section | Purpose |
 |---|---|
 | [`labs/kubernetes`](labs/kubernetes/README.md) | Hands-on Kubernetes troubleshooting labs |
+| [`labs/security`](labs/security/README.md) | DevSecOps security labs: Gitleaks, Trivy, Semgrep, SonarQube, Kubernetes security, Kyverno, Falco |
 | [`docs/incidents`](docs/incidents/README.md) | Production-style incident notes |
 | `docker/` | Docker and container labs |
 | `terraform/` | Infrastructure as Code practice |
