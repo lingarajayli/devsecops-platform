@@ -4,7 +4,7 @@ Report Summary
 ┌────────────────────────────┬────────────┬───────────────────┐
 │           Target           │    Type    │ Misconfigurations │
 ├────────────────────────────┼────────────┼───────────────────┤
-│ fixed-deployment.yaml      │ kubernetes │         1         │
+│ fixed-deployment.yaml      │ kubernetes │         0         │
 ├────────────────────────────┼────────────┼───────────────────┤
 │ network-policy.yaml        │ kubernetes │         0         │
 ├────────────────────────────┼────────────┼───────────────────┤
@@ -13,25 +13,4 @@ Report Summary
 Legend:
 - '-': Not scanned
 - '0': Clean (no security findings detected)
-
-
-fixed-deployment.yaml (kubernetes)
-==================================
-Tests: 98 (SUCCESSES: 97, FAILURES: 1)
-Failures: 1 (UNKNOWN: 0, LOW: 1, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
-
-KSV-0110 (LOW): deployment fixed-nginx in default namespace should set metadata.namespace to a non-default namespace
-═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-Checks whether a workload is running in the default namespace.
-
-See https://avd.aquasec.com/misconfig/ksv-0110
-─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- fixed-deployment.yaml:3-6
-─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-   3 ┌ metadata:
-   4 │   name: fixed-nginx
-   5 │   labels:
-   6 └     app: fixed-nginx
-─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-
 

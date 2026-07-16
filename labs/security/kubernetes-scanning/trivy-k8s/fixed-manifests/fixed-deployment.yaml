@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fixed-nginx
+  namespace: secure-workloads
   labels:
     app: fixed-nginx
 spec:
