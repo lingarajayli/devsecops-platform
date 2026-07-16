@@ -1,0 +1,2 @@
+NAME                  ADMISSION   BACKGROUND   READY   AGE     MESSAGE
+disallow-latest-tag   true        true         True    3m29s   Ready

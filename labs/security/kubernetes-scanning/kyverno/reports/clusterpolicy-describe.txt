@@ -1,0 +1,97 @@
+Name:         disallow-latest-tag
+Namespace:    
+Labels:       <none>
+Annotations:  policies.kyverno.io/category: Best Practices
+              policies.kyverno.io/description: Using the latest image tag makes deployments non-repeatable and unsafe.
+              policies.kyverno.io/severity: medium
+              policies.kyverno.io/subject: Pod
+              policies.kyverno.io/title: Disallow Latest Image Tag
+API Version:  kyverno.io/v1
+Kind:         ClusterPolicy
+Metadata:
+  Creation Timestamp:  2026-07-16T15:03:29Z
+  Generation:          1
+  Resource Version:    148831
+  UID:                 453bb1c7-5083-42e9-8784-57f15801f373
+Spec:
+  Admission:     true
+  Background:    true
+  Emit Warning:  false
+  Rules:
+    Match:
+      Any:
+        Resources:
+          Kinds:
+            Pod
+    Name:                      require-fixed-image-tag
+    Skip Background Requests:  true
+    Validate:
+      Allow Existing Violations:  true
+      Message:                    Images must not use the latest tag. Use a fixed version tag.
+      Pattern:
+        Spec:
+          Containers:
+            Image:            !*:latest
+  Validation Failure Action:  Enforce
+Status:
+  Autogen:
+    Rules:
+      Match:
+        Any:
+          Resources:
+            Kinds:
+              apps/v1/DaemonSet
+              apps/v1/Deployment
+              batch/v1/Job
+              apps/v1/ReplicaSet
+              v1/ReplicationController
+              apps/v1/StatefulSet
+        Resources:
+      Name:                      autogen-require-fixed-image-tag
+      Skip Background Requests:  true
+      Validate:
+        Allow Existing Violations:  true
+        Message:                    Images must not use the latest tag. Use a fixed version tag.
+        Pattern:
+          Spec:
+            Template:
+              Spec:
+                Containers:
+                  Image:  !*:latest
+      Match:
+        Any:
+          Resources:
+            Kinds:
+              batch/v1/CronJob
+        Resources:
+      Name:                      autogen-cronjob-require-fixed-image-tag
+      Skip Background Requests:  true
+      Validate:
+        Allow Existing Violations:  true
+        Message:                    Images must not use the latest tag. Use a fixed version tag.
+        Pattern:
+          Spec:
+            Job Template:
+              Spec:
+                Template:
+                  Spec:
+                    Containers:
+                      Image:  !*:latest
+  Conditions:
+    Last Transition Time:  2026-07-16T15:03:29Z
+    Message:               Ready
+    Reason:                Succeeded
+    Status:                True
+    Type:                  Ready
+  Rulecount:
+    Generate:      0
+    Mutate:        0
+    Validate:      1
+    Verifyimages:  0
+  Validatingadmissionpolicy:
+    Generated:  false
+    Message:    
+Events:
+  Type     Reason           Age   From               Message
+  ----     ------           ----  ----               -------
+  Warning  PolicyViolation  59s   kyverno-admission  Deployment default/bad-nginx-latest: [autogen-require-fixed-image-tag] fail (blocked); validation error: Images must not use the latest tag. Use a fixed version tag. rule autogen-require-fixed-image-tag failed at path /spec/template/spec/containers/0/image/

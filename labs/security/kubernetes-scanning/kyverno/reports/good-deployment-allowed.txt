@@ -1,0 +1,1 @@
+deployment.apps/good-nginx-fixed-tag created

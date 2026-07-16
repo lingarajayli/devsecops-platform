@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bad-nginx-latest
+  namespace: default
+  labels:
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/instance: bad-nginx-latest
+    app.kubernetes.io/component: web
+    app.kubernetes.io/part-of: kyverno-policy-lab
+    app.kubernetes.io/managed-by: kubectl
+    environment: lab
+    team: platform
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: bad-nginx-latest
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nginx
+        app.kubernetes.io/instance: bad-nginx-latest
+        app.kubernetes.io/component: web
+        app.kubernetes.io/part-of: kyverno-policy-lab
+        app.kubernetes.io/managed-by: kubectl
+        environment: lab
+        team: platform
+        tier: frontend
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
