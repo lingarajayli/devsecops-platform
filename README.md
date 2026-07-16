@@ -188,6 +188,32 @@ This repository includes GitHub Actions workflows that run automated DevSecOps c
 Local labs prove learning.
 CI/CD gates prove automation.
 ```
+---
+
+## GitHub Enterprise Workflow Simulation
+
+This repository also includes a GitHub Enterprise-style workflow simulation using free GitHub features.
+
+| Area | Implementation |
+|---|---|
+| Repository ownership | [CODEOWNERS](.github/CODEOWNERS) |
+| Pull request standards | [Pull Request Template](.github/pull_request_template.md) |
+| Branch protection | [Branch Protection Guide](docs/github-enterprise/branch-protection.md) |
+| Required checks | [Required Checks Guide](docs/github-enterprise/required-checks.md) |
+| Actions permissions | [GitHub Actions Permissions Guide](docs/github-enterprise/actions-permissions.md) |
+| Secrets and variables | [Secrets and Variables Guide](docs/github-enterprise/secrets-and-variables.md) |
+| Environments | [Environments Guide](docs/github-enterprise/environments.md) |
+| Interview notes | [GitHub Enterprise Interview Notes](docs/github-enterprise/interview-notes.md) |
+
+```text
+Feature Branch -> Pull Request -> CI/CD Checks -> Review -> Protected Main -> Deployment Approval
+```
+
+Full index:
+
+```text
+docs/github-enterprise/README.md
+```
 
 ---
 
