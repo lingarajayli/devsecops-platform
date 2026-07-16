@@ -13,3 +13,44 @@ __pycache__/
 # SonarQube scanner local files
 .scannerwork/
 
+# -----------------------------
+# Phase 11: App / CI/CD safety
+# -----------------------------
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# Docker / image artifacts
+*.tar
+*.tar.gz
+*.tgz
+*.img
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Tool caches
+.cache/
+.trivycache/
+.semgrep/
+.scannerwork/
+
+# Test / report outputs
+coverage.xml
+junit.xml
+test-results/
+reports/generated/
