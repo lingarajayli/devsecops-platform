@@ -1,0 +1,39 @@
+
+
+──────────────────────────────────────────────────
+
+Framework scanned: NSA
+
+╭─────────────────┬────╮
+│        Controls │ 20 │
+│          Passed │ 12 │
+│          Failed │ 8  │
+│ Action Required │ 0  │
+╰─────────────────┴────╯
+
+Failed resources by severity:
+
+╭──────────┬───╮
+│ Critical │ 0 │
+│     High │ 2 │
+│   Medium │ 5 │
+│      Low │ 1 │
+╰──────────┴───╯
+
+Run with '--verbose'/'-v' to see control failures for each resource.
+
+╭──────────┬──────────────────────────────────────┬──────────────────┬───────────────┬──────────────────╮
+│ Severity │ Control name                         │ Failed resources │ All Resources │ Compliance score │
+├──────────┼──────────────────────────────────────┼──────────────────┼───────────────┼──────────────────┤
+│   High   │ Ensure CPU limits are set            │         1        │       1       │        0%        │
+│   High   │ Ensure memory limits are set         │         1        │       1       │        0%        │
+│  Medium  │ Non-root containers                  │         1        │       1       │        0%        │
+│  Medium  │ Allow privilege escalation           │         1        │       1       │        0%        │
+│  Medium  │ Ingress and Egress blocked           │         1        │       1       │        0%        │
+│  Medium  │ Automatic mapping of service account │         1        │       1       │        0%        │
+│  Medium  │ Linux hardening                      │         1        │       1       │        0%        │
+│    Low   │ Immutable container filesystem       │         1        │       1       │        0%        │
+├──────────┼──────────────────────────────────────┼──────────────────┼───────────────┼──────────────────┤
+│          │           Resource Summary           │         1        │       1       │      60.00%      │
+╰──────────┴──────────────────────────────────────┴──────────────────┴───────────────┴──────────────────╯
+

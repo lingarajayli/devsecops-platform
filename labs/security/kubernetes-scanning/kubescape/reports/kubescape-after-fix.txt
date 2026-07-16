@@ -1,0 +1,51 @@
+
+
+──────────────────────────────────────────────────
+
+Framework scanned: NSA
+
+╭─────────────────┬────╮
+│        Controls │ 20 │
+│          Passed │ 20 │
+│          Failed │ 0  │
+│ Action Required │ 0  │
+╰─────────────────┴────╯
+
+Failed resources by severity:
+
+╭──────────┬───╮
+│ Critical │ 0 │
+│     High │ 0 │
+│   Medium │ 0 │
+│      Low │ 0 │
+╰──────────┴───╯
+
+Run with '--verbose'/'-v' to see control failures for each resource.
+
+╭──────────┬───────────────────────────────────────────────────────┬──────────────────┬───────────────┬──────────────────╮
+│ Severity │ Control name                                          │ Failed resources │ All Resources │ Compliance score │
+├──────────┼───────────────────────────────────────────────────────┼──────────────────┼───────────────┼──────────────────┤
+│   High   │ Applications credentials in configuration files       │         0        │       1       │       100%       │
+│   High   │ Host PID/IPC privileges                               │         0        │       1       │       100%       │
+│   High   │ HostNetwork access                                    │         0        │       1       │       100%       │
+│   High   │ Insecure capabilities                                 │         0        │       1       │       100%       │
+│   High   │ Privileged container                                  │         0        │       1       │       100%       │
+│   High   │ CVE-2021-25742-nginx-ingress-snippet-annotation-vu... │         0        │       0       │       100%       │
+│   High   │ Ensure CPU limits are set                             │         0        │       1       │       100%       │
+│   High   │ Ensure memory limits are set                          │         0        │       1       │       100%       │
+│  Medium  │ Prevent containers from allowing command execution    │         0        │       0       │       100%       │
+│  Medium  │ Non-root containers                                   │         0        │       1       │       100%       │
+│  Medium  │ Allow privilege escalation                            │         0        │       1       │       100%       │
+│  Medium  │ Ingress and Egress blocked                            │         0        │       2       │       100%       │
+│  Medium  │ Automatic mapping of service account                  │         0        │       1       │       100%       │
+│  Medium  │ Administrative Roles                                  │         0        │       0       │       100%       │
+│  Medium  │ Container hostPort                                    │         0        │       1       │       100%       │
+│  Medium  │ Cluster internal networking                           │         0        │       0       │       100%       │
+│  Medium  │ Linux hardening                                       │         0        │       1       │       100%       │
+│  Medium  │ Nginx Ingress Controller End of Life                  │         0        │       1       │       100%       │
+│    Low   │ Immutable container filesystem                        │         0        │       1       │       100%       │
+│    Low   │ PSP enabled                                           │         0        │       0       │       100%       │
+├──────────┼───────────────────────────────────────────────────────┼──────────────────┼───────────────┼──────────────────┤
+│          │                    Resource Summary                   │         0        │       2       │      100.00%     │
+╰──────────┴───────────────────────────────────────────────────────┴──────────────────┴───────────────┴──────────────────╯
+

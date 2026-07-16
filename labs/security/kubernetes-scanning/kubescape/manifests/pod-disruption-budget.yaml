@@ -1,0 +1,10 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: fixed-nginx-pdb
+  namespace: secure-workloads
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: fixed-nginx
