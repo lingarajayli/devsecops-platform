@@ -13,5 +13,3 @@ __pycache__/
 # SonarQube scanner local files
 .scannerwork/
 
-# SonarQube scanner local files
-.scannerwork/
