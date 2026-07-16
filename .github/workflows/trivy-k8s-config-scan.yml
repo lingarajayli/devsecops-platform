@@ -33,7 +33,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: config
-          scan-ref: labs/security/kubernetes-scanning
+          scan-ref: labs/security/kubernetes-scanning/trivy-k8s/fixed-manifests
           format: table
           severity: HIGH,CRITICAL
           exit-code: "1"
