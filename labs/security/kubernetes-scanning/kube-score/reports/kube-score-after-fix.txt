@@ -1,0 +1,8 @@
+apps/v1/Deployment fixed-nginx                                                💥
+    path=/home/aviator/devsecops-platform/labs/security/kubernetes-scanning/kube-score/manifests/fixed-deployment.yaml
+    [CRITICAL] Container Image Pull Policy
+        · nginx -> ImagePullPolicy is not set to Always
+            It's recommended to always set the ImagePullPolicy to Always, to make sure that the imagePullSecrets are always
+            correct, and to always get the image you want.
+networking.k8s.io/v1/NetworkPolicy fixed-nginx-network-policy                 ✅
+policy/v1/PodDisruptionBudget fixed-nginx-pdb                                 ✅

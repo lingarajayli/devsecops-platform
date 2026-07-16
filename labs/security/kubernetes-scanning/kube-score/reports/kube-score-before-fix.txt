@@ -1,0 +1,32 @@
+apps/v1/Deployment vulnerable-nginx                                           💥
+    path=/home/aviator/devsecops-platform/labs/security/kubernetes-scanning/kube-score/manifests/vulnerable-deployment.yaml
+    [CRITICAL] Container Security Context ReadOnlyRootFilesystem
+        · nginx -> Container has no configured security context
+            Set securityContext to run the container in a more secure context.
+    [CRITICAL] Container Resources
+        · nginx -> CPU limit is not set
+            Resource limits are recommended to avoid resource DDOS. Set resources.limits.cpu
+        · nginx -> Memory limit is not set
+            Resource limits are recommended to avoid resource DDOS. Set resources.limits.memory
+        · nginx -> CPU request is not set
+            Resource requests are recommended to make sure that the application can start and run without crashing. Set
+            resources.requests.cpu
+        · nginx -> Memory request is not set
+            Resource requests are recommended to make sure that the application can start and run without crashing. Set
+            resources.requests.memory
+    [CRITICAL] Container Security Context User Group ID
+        · nginx -> Container has no configured security context
+            Set securityContext to run the container in a more secure context.
+    [CRITICAL] Container Image Tag
+        · nginx -> Image with latest tag
+            Using a fixed tag is recommended to avoid accidental upgrades
+    [CRITICAL] Container Ephemeral Storage Request and Limit
+        · nginx -> Ephemeral Storage limit is not set
+            Resource limits are recommended to avoid resource DDOS. Set resources.limits.ephemeral-storage
+        · nginx -> Ephemeral Storage request is not set
+            Resource requests are recommended to make sure the application can start and run without crashing. Set
+            resource.requests.ephemeral-storage
+    [CRITICAL] Pod NetworkPolicy
+        · The pod does not have a matching NetworkPolicy
+            Create a NetworkPolicy that targets this pod to control who/what can communicate with this pod. Note, this
+            feature needs to be supported by the CNI implementation used in the Kubernetes cluster to have an effect.
