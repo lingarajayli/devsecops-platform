@@ -1,0 +1,12 @@
+driver:
+  enabled: true
+  kind: auto
+
+falcosidekick:
+  enabled: false
+
+falco:
+  priority: debug
+  json_output: false
+  stdout_output:
+    enabled: true

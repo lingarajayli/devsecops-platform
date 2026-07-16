@@ -1,0 +1,2 @@
+NAME               READY   STATUS    RESTARTS   AGE
+falco-test-nginx   1/1     Running   0          4m56s

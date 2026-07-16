@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: falco-test-nginx
+  namespace: default
+  labels:
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/instance: falco-test-nginx
+    app.kubernetes.io/component: web
+    app.kubernetes.io/part-of: falco-runtime-lab
+    app.kubernetes.io/version: "1.27"
+    app.kubernetes.io/managed-by: kubectl
+    environment: lab
+    team: platform
+    tier: frontend
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.27-alpine
+      ports:
+        - containerPort: 80
