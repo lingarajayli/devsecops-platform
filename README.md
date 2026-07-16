@@ -163,6 +163,27 @@ Prevent -> Scan -> Analyze -> Enforce -> Detect
 
 ---
 
+## CI/CD Security Gates
+
+This repository includes GitHub Actions workflows that run automated DevSecOps checks.
+
+| Workflow | Purpose | Status |
+|---|---|---|
+| Gitleaks Secret Scan | Detect secrets before they enter Git history | Passing |
+| Trivy Image Scan | Scan container images for vulnerabilities | Passing |
+| Trivy Critical Gate | Fail CI on critical container vulnerabilities | Passing |
+| Semgrep SAST Scan | Detect insecure code patterns | Passing |
+| Semgrep SAST Gate | Fail CI on serious insecure code patterns | Passing |
+| Trivy Kubernetes Config Scan | Scan fixed Kubernetes manifests for HIGH/CRITICAL misconfigurations | Passing |
+| kube-score Kubernetes Scan | Check fixed Kubernetes manifests for production-readiness | Passing |
+
+```text
+Local labs prove learning.
+CI/CD gates prove automation.
+```
+
+---
+
 ## Current Major Milestone
 
 ### Kubernetes Troubleshooting Labs: Series 01
