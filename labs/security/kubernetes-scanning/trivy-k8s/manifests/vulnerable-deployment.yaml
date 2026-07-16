@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vulnerable-nginx
+  labels:
+    app: vulnerable-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vulnerable-nginx
+  template:
+    metadata:
+      labels:
+        app: vulnerable-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
