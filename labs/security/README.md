@@ -41,6 +41,38 @@ Runtime threat detection
 
 ---
 
+## CI/CD Security Gates
+
+This repository also includes GitHub Actions security gates.
+
+These workflows prove that the security checks are not only manual local labs, but can also run automatically in CI/CD.
+
+| Workflow | Purpose | Status |
+|---|---|---|
+| Gitleaks Secret Scan | Detect secrets in repository history and changes | Passing |
+| Trivy Image Scan | Scan container images for vulnerabilities | Passing |
+| Trivy Critical Gate | Fail CI on critical container vulnerabilities | Passing |
+| Semgrep SAST Scan | Run static application security testing | Passing |
+| Semgrep SAST Gate | Fail CI on serious insecure code patterns | Passing |
+| Trivy Kubernetes Config Scan | Scan Kubernetes fixed manifests for HIGH/CRITICAL misconfigurations | Passing |
+| kube-score Kubernetes Scan | Check Kubernetes fixed manifests for production-readiness | Passing |
+
+Important design decision:
+
+```text
+Vulnerable manifests are kept in the repository for learning evidence.
+CI/CD security gates scan only fixed/deployable manifests.
+```
+
+This keeps the portfolio educational while keeping CI/CD gates realistic.
+
+```text
+Local labs prove learning.
+CI/CD gates prove automation.
+```
+
+---
+
 ## DevSecOps Security Flow
 
 ```mermaid
