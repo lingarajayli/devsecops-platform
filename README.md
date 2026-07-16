@@ -160,6 +160,13 @@ This demonstrates a complete DevSecOps flow:
 ```text
 Prevent -> Scan -> Analyze -> Enforce -> Detect
 ```
+---
+
+Interview explanation:
+
+```text
+docs/interview/devsecops-security-project-explanation.md
+```
 
 ---
 
