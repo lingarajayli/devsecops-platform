@@ -1,0 +1,17 @@
+# Repository-wide ownership
+* @lingarajayli
+
+# GitHub Actions workflows
+.github/workflows/ @lingarajayli
+
+# Security labs
+labs/security/ @lingarajayli
+
+# Kubernetes labs
+labs/kubernetes/ @lingarajayli
+
+# GitHub Enterprise documentation
+docs/github-enterprise/ @lingarajayli
+
+# Interview documentation
+docs/interview/ @lingarajayli
