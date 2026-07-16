@@ -1,0 +1,47 @@
+name: kube-score Kubernetes Scan
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "labs/security/kubernetes-scanning/kube-score/manifests/**"
+      - ".github/workflows/kube-score-k8s-scan.yml"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "labs/security/kubernetes-scanning/kube-score/manifests/**"
+      - ".github/workflows/kube-score-k8s-scan.yml"
+
+  workflow_dispatch:
+
+jobs:
+  kube-score:
+    name: Scan Kubernetes manifests with kube-score
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install kube-score
+        run: |
+          KUBE_SCORE_VERSION="1.20.0"
+          curl -L -o kube-score.tar.gz \
+            "https://github.com/zegl/kube-score/releases/download/v${KUBE_SCORE_VERSION}/kube-score_${KUBE_SCORE_VERSION}_linux_amd64.tar.gz"
+          tar -xzf kube-score.tar.gz
+          sudo mv kube-score /usr/local/bin/kube-score
+          kube-score version
+
+      - name: Run kube-score scan
+        run: |
+          kube-score score \
+            labs/security/kubernetes-scanning/kube-score/manifests/fixed-deployment.yaml \
+            labs/security/kubernetes-scanning/kube-score/manifests/network-policy.yaml \
+            labs/security/kubernetes-scanning/kube-score/manifests/pod-disruption-budget.yaml \
+            --output-format ci
