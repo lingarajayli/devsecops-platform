@@ -4,18 +4,18 @@ metadata:
   name: flask-health-api
   namespace: flask-health-api
   labels:
-    apps.kubernetes.io/name: flask-health-api
-    apps.kubernetes.io/instance: flask-health-api-dev
-    apps.kubernetes.io/component: api
-    apps.kubernetes.io/part-of: devsecops-platform
-    apps.kubernetes.io/managed-by: kubectl
+    app.kubernetes.io/name: flask-health-api
+    app.kubernetes.io/instance: flask-health-api-dev
+    app.kubernetes.io/component: api
+    app.kubernetes.io/part-of: devsecops-platform
+    app.kubernetes.io/managed-by: kubectl
     environment: dev
     team: devsecops-platform
 spec:
   type: ClusterIP
   selector:
     app.kubernetes.io/name: flask-health-api
-    apps.kubernetes.io/instance: flask-health-api-dev
+    app.kubernetes.io/instance: flask-health-api-dev
   ports:
     - name: http
       port: 5000
