@@ -164,6 +164,63 @@ This confirmed that the Service was routing traffic to the Pod correctly.
 
 ---
 
+## Security Improvements I Made
+
+### Semgrep Finding: Flask Development Server
+
+Semgrep flagged that running Flask with `host="0.0.0.0"` could expose the development server publicly.
+
+I fixed this by keeping the Flask development server local-only:
+
+```python
+app.run(host="127.0.0.1", port=5000)
+```
+
+For the Docker container, I used Gunicorn instead:
+
+```dockerfile
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+```
+
+This separates local development from production container runtime.
+
+---
+
+### SonarQube Finding: Container Running as Root
+
+SonarQube flagged that the Docker image was running as root.
+
+I fixed this by creating a dedicated non-root user and group:
+
+```dockerfile
+RUN groupadd --system --gid 10001 appgroup \
+    && useradd --system --uid 10001 --gid appgroup --shell /usr/sbin/nologin appuser
+```
+
+Then I changed ownership of the app directory and switched the container runtime user:
+
+```dockerfile
+RUN chown -R appuser:appgroup /app
+
+USER appuser
+```
+
+I validated the fix with:
+
+```bash
+docker run --rm flask-health-api:local id
+```
+
+Output:
+
+```text
+uid=10001(appuser) gid=10001(appgroup) groups=10001(appgroup)
+```
+
+This reduces impact if the application is compromised because the attacker does not get root privileges inside the container.
+
+---
+
 ## Commands I Used
 
 Run tests:

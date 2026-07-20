@@ -214,6 +214,67 @@ curl http://localhost:5000/health
 
 ---
 
+## Security Improvements
+
+### Gunicorn Instead of Flask Development Server
+
+Initial issue:
+
+```text
+Semgrep flagged that running Flask with host 0.0.0.0 may expose the development server publicly.
+```
+
+Fix:
+
+```text
+The Flask development server is now used only for local development with 127.0.0.1.
+The Docker container runs the app using Gunicorn, which is a production-grade WSGI server.
+```
+
+Docker runtime:
+
+```dockerfile
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+```
+
+---
+
+### Non-root Container User
+
+Initial issue:
+
+```text
+SonarQube flagged that the Python Docker image runs as root by default.
+```
+
+Fix:
+
+```text
+A dedicated non-root user and group were created inside the image.
+The container now runs as appuser with UID 10001.
+```
+
+Validation:
+
+```bash
+docker run --rm flask-health-api:local id
+```
+
+Expected output:
+
+```text
+uid=10001(appuser) gid=10001(appgroup) groups=10001(appgroup)
+```
+
+Why this matters:
+
+```text
+If an attacker compromises the application, they get non-root container privileges instead of root privileges.
+```
+
+
+---
+
 ## Troubleshooting Notes
 
 ### ImagePullBackOff
