@@ -37,6 +37,29 @@ This repository is designed to prove practical engineering ability through real 
 
 ---
 
+## Applications Portfolio
+
+| Application | Purpose | Stack | Status |
+|---|---|---|---|
+| [Flask Health API](apps/flask-health-api/README.md) | Demo app for CI/CD, Docker, Kubernetes, health checks, and DevSecOps gates | Python, Flask, pytest, Docker, Kubernetes, GitHub Actions | Completed |
+
+### Flask Health API Delivery Flow
+
+```mermaid
+flowchart TD
+    A[Developer Push] --> B[GitHub Actions CI]
+    B --> C[Install Python Dependencies]
+    C --> D[Run pytest Unit Tests]
+    D --> E[Build Docker Image]
+    E --> F[Run DevSecOps Gates]
+    F --> G[Deploy Locally to Kind Kubernetes]
+    G --> H[Expose Through Kubernetes Service]
+    H --> I[Test /health Endpoint]
+```
+
+
+---
+
 ## Portfolio Focus
 
 ```mermaid
