@@ -329,6 +329,29 @@ GitHub Actions automatically ran the CI pipeline. It installed dependencies, ran
 
 ---
 
+## GitHub Environments and Deployment Approval
+
+I implemented a deployment workflow using GitHub Environments.
+
+The dev deployment runs automatically after a push to `main`, while the production deployment waits for manual approval through the protected `prod` environment.
+
+This simulates a real enterprise release process where production deployments require human review before execution.
+
+### Interview Explanation
+
+I configured GitHub Environments for `dev` and `prod`. The `dev` job runs automatically, but the `prod` job is protected by manual approval. This helps prevent uncontrolled production releases and is commonly used in GitHub Enterprise environments.
+
+### Flow
+
+```mermaid
+flowchart TD
+    A[Push to main] --> B[Deploy to Dev]
+    B --> C[Manual Approval for Prod]
+    C --> D[Deploy to Prod]
+```
+
+---
+
 ## Current Status
 
 ```text

@@ -214,6 +214,39 @@ curl http://localhost:5000/health
 
 ---
 
+## GitHub Environment Deployment Flow
+
+This project includes a GitHub Actions deployment workflow using GitHub Environments.
+
+```mermaid
+flowchart TD
+    A[Push to main] --> B[Deploy to Dev]
+    B --> C[Prod Environment Approval]
+    C --> D[Deploy to Prod]
+```
+
+### Environments
+
+| Environment | Deployment behavior |
+|---|---|
+| dev | Runs automatically after push |
+| prod | Requires manual approval before deployment |
+
+### Why this matters
+
+In real production systems, production deployments should not run automatically without control. GitHub Environments allow teams to add approval gates, environment-level secrets, and deployment protection rules.
+
+### What was implemented
+
+- Created `dev` environment
+- Created `prod` environment
+- Added required reviewer approval for `prod`
+- Added GitHub Actions deployment workflow
+- Verified that dev deployment runs automatically
+- Verified that prod deployment waits for manual approval
+
+---
+
 ## Security Improvements
 
 ### Gunicorn Instead of Flask Development Server
