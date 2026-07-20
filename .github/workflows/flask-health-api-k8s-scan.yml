@@ -1,0 +1,39 @@
+name: Flask Health API Kubernetes Config Scan
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/flask-health-api/kubernetes/**"
+      - ".github/workflows/flask-health-api-k8s-scan.yml"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "apps/flask-health-api/kubernetes/**"
+      - ".github/workflows/flask-health-api-k8s-scan.yml"
+
+  workflow_dispatch:
+
+jobs:
+  trivy-k8s-config-scan:
+    name: Scan Flask Kubernetes Manifests with Trivy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Trivy Kubernetes config scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: config
+          scan-ref: apps/flask-health-api/kubernetes
+          format: table
+          severity: CRITICAL,HIGH
+          exit-code: "1"
