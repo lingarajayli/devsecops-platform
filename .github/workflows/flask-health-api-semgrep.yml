@@ -1,0 +1,36 @@
+name: Flask Health API Semgrep SAST
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/flask-health-api/**"
+      - ".github/workflows/flask-health-api-semgrep.yml"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "apps/flask-health-api/**"
+      - ".github/workflows/flask-health-api-semgrep.yml"
+
+  workflow_dispatch:
+
+jobs:
+  semgrep-sast:
+    name: Scan Flask App with Semgrep
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep scan
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: p/python
+          scan: apps/flask-health-api
