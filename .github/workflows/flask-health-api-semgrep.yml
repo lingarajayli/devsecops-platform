@@ -29,8 +29,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Semgrep scan
-        uses: semgrep/semgrep-action@v1
+      - name: Set up Python for Semgrep
+        uses: actions/setup-python@v6
         with:
-          config: p/python
-          scan: apps/flask-health-api
+          python-version: "3.12"
+    
+      - name: Install Semgrep
+        run: python -m pip install semgrep    
+
+      - name: Run Semgrep scan only on Flask app
+        run: semgrep scan --config p/python apps/flask-health-api --error
