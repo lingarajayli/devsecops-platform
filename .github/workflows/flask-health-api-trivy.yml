@@ -1,0 +1,46 @@
+name: Flask Health API Trivy Image Scan
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/flask-health-api/**"
+      - ".github/workflows/flask-health-api-trivy.yml"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "apps/flask-health-api/**"
+      - ".github/workflows/flask-health-api-trivy.yml"
+
+  workflow_dispatch:
+
+jobs:
+  trivy-image-scan:
+    name: Scan Flask Docker Image with Trivy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    defaults:
+      run:
+        working-directory: apps/flask-health-api
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t flask-health-api:ci .
+
+      - name: Run Trivy vulnerability scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: flask-health-api:ci
+          format: table
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: "1"
