@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: flask-health-api
+  labels:
+    team: devsecops
+    environment: dev
+    app.kubernetes.io/name: flask-health-api
+    app.kubernetes.io/part-of: devsecops-platform
+    app.kubernetes.io/managed-by: kubectl
