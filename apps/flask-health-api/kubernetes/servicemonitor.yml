@@ -1,0 +1,26 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: flask-health-api
+  namespace: flask-health-api
+  labels:
+    release: monitoring
+    app.kubernetes.io/name: flask-health-api
+    app.kubernetes.io/instance: flask-health-api-dev
+    app.kubernetes.io/component: monitoring
+    app.kubernetes.io/part-of: devsecops-platform
+    app.kubernetes.io/managed-by: kubectl
+    environment: dev
+    team: devsecops-platform
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: flask-health-api
+      app.kubernetes.io/instance: flask-health-api-dev
+  namespaceSelector:
+    matchNames:
+      - flask-health-api
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
