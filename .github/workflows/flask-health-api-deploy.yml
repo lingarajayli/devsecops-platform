@@ -1,0 +1,44 @@
+name: Flask Health API Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/flask-health-api/**"
+      - ".github/workflows/flask-health-api-deploy.yml"
+
+  workflow_dispatch:
+
+jobs:
+  deploy-dev:
+    name: Deploy to Dev
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Simulate dev deployment
+        run: |
+          echo "Deploying Flask Health API to dev..."
+          echo "Namespace: flask-health-api"
+          echo "Image: flask-health-api:dev"
+          echo "Dev deployment completed."
+
+  deploy-prod:
+    name: Deploy to Prod
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: deploy-dev
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Simulate prod deployment
+        run: |
+          echo "Deploying Flask Health API to prod..."
+          echo "Manual approval required before this job runs."
+          echo "Prod deployment completed."
