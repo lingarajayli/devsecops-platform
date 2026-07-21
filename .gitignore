@@ -64,3 +64,7 @@ reports/generated/
 # Terraform generated lab files
 labs/terraform/**/devops-note.txt
 labs/terraform/**/*-inventory.txt
+
+# Terraform generated local lab outputs
+labs/terraform/**/*.txt
+labs/terraform/**/*.json
