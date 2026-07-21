@@ -54,3 +54,9 @@ coverage.xml
 junit.xml
 test-results/
 reports/generated/
+# Terraform
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/crash.log
+**/crash.*.log
