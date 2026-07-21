@@ -491,7 +491,27 @@ GitHub Actions CI validation
 Terraform infrastructure modules
 Monitoring stack with Prometheus and Grafana
 ```
+### Terraform Validation Workflow
 
+This repository includes GitHub Actions validation for Terraform labs.
+
+```mermaid
+flowchart TD
+    A[Push Terraform Code] --> B[Terraform fmt Check]
+    B --> C[Terraform Init]
+    C --> D[Terraform Validate]
+    D --> E[Terraform Labs Verified]
+```
+
+The workflow validates all Terraform labs using a matrix strategy.
+
+Checks included:
+
+```text
+terraform fmt -check
+terraform init -backend=false
+terraform validate
+```
 ---
 
 ## Recommended Reading Path
