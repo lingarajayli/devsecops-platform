@@ -41,7 +41,7 @@ This repository is designed to prove practical engineering ability through real 
 
 | Application | Purpose | Stack | Status |
 |---|---|---|---|
-| [Flask Health API](apps/flask-health-api/README.md) | Demo app for CI/CD, Docker, Kubernetes, health checks, and DevSecOps gates | Python, Flask, pytest, Docker, Kubernetes, GitHub Actions | Completed |
+| [Flask Health API](apps/flask-health-api/README.md) | Demo app for CI/CD, Docker, Kubernetes, health checks, DevSecOps gates, deployment approvals, and observability | Python, Flask, pytest, Docker, Kubernetes, GitHub Actions, Prometheus, Grafana | Completed |
 
 ### Flask Health API Delivery Flow
 
@@ -56,7 +56,17 @@ flowchart TD
     G --> H[Expose Through Kubernetes Service]
     H --> I[Test /health Endpoint]
 ```
+### Flask Health API Observability Flow
 
+```mermaid
+flowchart TD
+    A[Flask Health API] --> B[/metrics Endpoint]
+    B --> C[Kubernetes Service]
+    C --> D[ServiceMonitor]
+    D --> E[Prometheus]
+    E --> F[Grafana Dashboard]
+    E --> G[Prometheus Alert Rule]
+```
 
 ---
 
