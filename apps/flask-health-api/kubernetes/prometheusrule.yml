@@ -1,0 +1,26 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: flask-health-api-alerts
+  namespace: flask-health-api
+  labels:
+    release: monitoring
+    app.kubernetes.io/name: flask-health-api
+    app.kubernetes.io/component: alerting
+    app.kubernetes.io/part-of: devsecops-platform
+    app.kubernetes.io/managed-by: kubectl
+    environment: dev
+    team: devsecops-platform
+spec:
+  groups:
+    - name: flask-health-api.rules
+      rules:
+        - alert: FlaskHealthAPIDown
+          expr: absent(up{job="flask-health-api"} == 1)
+          for: 1m
+          labels:
+            severity: warning
+            service: flask-health-api
+          annotations:
+            summary: "Flask Health API is down"
+            description: "Prometheus cannot scrape Flask Health API metrics for more than 1 minute."
