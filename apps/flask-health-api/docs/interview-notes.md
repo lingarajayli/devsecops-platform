@@ -349,7 +349,31 @@ flowchart TD
     B --> C[Manual Approval for Prod]
     C --> D[Deploy to Prod]
 ```
+## Prometheus and Grafana Observability
 
+I added Prometheus metrics to the Flask Health API using a `/metrics` endpoint.
+
+Prometheus scrapes the application through a Kubernetes `ServiceMonitor`, and Grafana visualizes the metrics using a dashboard.
+
+### Interview Explanation
+
+I exposed application metrics from the Flask app, created a Kubernetes `ServiceMonitor`, verified scraping in Prometheus, and built a Grafana dashboard for request rate and scrape status.
+
+### Flow
+
+```text
+Flask app -> /metrics -> Service -> ServiceMonitor -> Prometheus -> Grafana
+```
+
+### Key Queries
+
+```promql
+rate(flask_http_request_total[1m])
+```
+
+```promql
+up{job="flask-health-api"}
+```
 ---
 
 ## Current Status

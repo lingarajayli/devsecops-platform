@@ -363,6 +363,37 @@ I also tested the full flow from local app execution to Docker container executi
 
 This proves practical understanding of application packaging, containerization, Kubernetes workloads, health checks, and deployment troubleshooting.
 
+
+## Observability with Prometheus and Grafana
+
+This project exposes application metrics using Prometheus format through the `/metrics` endpoint.
+
+```mermaid
+flowchart TD
+    A[Flask App /metrics] --> B[Kubernetes Service]
+    B --> C[ServiceMonitor]
+    C --> D[Prometheus]
+    D --> E[Grafana Dashboard]
+```
+
+### What was implemented
+
+- Added Prometheus metrics endpoint to Flask app
+- Installed `kube-prometheus-stack` on Kind
+- Created `ServiceMonitor` for Flask Health API
+- Verified Prometheus scraping using `flask_http_request_total`
+- Created Grafana dashboard: `Flask Health API Observability`
+
+### Useful PromQL queries
+
+```promql
+rate(flask_http_request_total[1m])
+```
+
+```promql
+up{job="flask-health-api"}
+```
+
 ---
 
 ## Current Status
