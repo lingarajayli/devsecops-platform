@@ -60,3 +60,7 @@ reports/generated/
 **/*.tfstate.*
 **/crash.log
 **/crash.*.log
+
+# Terraform generated lab files
+labs/terraform/**/devops-note.txt
+labs/terraform/**/*-inventory.txt
