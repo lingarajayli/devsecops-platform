@@ -387,3 +387,19 @@ Service access: Working
 GitHub Actions: Passing
 Gitleaks: Passing
 ```
+
+## Prometheus Alerting
+
+I added a Prometheus alert using `PrometheusRule` to detect when the Flask Health API is not scrapeable.
+
+Initially, `up{job="flask-health-api"} == 0` was considered, but it is not reliable when the target disappears completely. I used `absent(up{job="flask-health-api"} == 1)` so the alert fires when no healthy scrape target exists.
+
+### Interview Explanation
+
+I created a PrometheusRule for application availability and tested it by scaling the Kubernetes deployment to zero replicas. The alert moved to pending, and after restoring the app, it returned to inactive.
+
+### Alert expression
+
+```promql
+absent(up{job="flask-health-api"} == 1)
+```

@@ -394,6 +394,37 @@ rate(flask_http_request_total[1m])
 up{job="flask-health-api"}
 ```
 
+
+## Prometheus Alerting
+
+This project includes a Prometheus alert rule for Flask Health API availability.
+
+### Alert rule
+
+```promql
+absent(up{job="flask-health-api"} == 1)
+```
+
+### What it detects
+
+This alert fires when Prometheus cannot find any healthy scrape target for the Flask Health API.
+
+### Test performed
+
+The alert was tested by scaling the Flask deployment to zero replicas.
+
+```bash
+kubectl scale deployment flask-health-api -n flask-health-api --replicas=0
+```
+
+Observed alert lifecycle:
+
+```text
+Healthy app -> Inactive
+Scaled to 0 -> Pending
+Restored app -> Inactive
+```
+
 ---
 
 ## Current Status
