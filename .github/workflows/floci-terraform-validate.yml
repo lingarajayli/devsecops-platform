@@ -1,0 +1,57 @@
+name: Floci Terraform Validate
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "labs/floci/**"
+      - ".github/workflows/floci-terraform-validate.yml"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "labs/floci/**"
+      - ".github/workflows/floci-terraform-validate.yml"
+
+  workflow_dispatch:
+
+jobs:
+  terraform-validate:
+    name: Validate Floci Terraform Labs
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        lab:
+          - labs/floci/03-terraform-secure-s3
+          - labs/floci/04-terraform-iam-least-privilege
+          - labs/floci/05-terraform-secrets-manager
+          - labs/floci/06-terraform-iam-access-key-risk
+          - labs/floci/07-secure-s3-artifact-platform
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.15.4
+
+      - name: Terraform fmt check
+        working-directory: ${{ matrix.lab }}
+        run: terraform fmt -check -recursive
+
+      - name: Terraform init
+        working-directory: ${{ matrix.lab }}
+        run: terraform init -backend=false
+
+      - name: Terraform validate
+        working-directory: ${{ matrix.lab }}
+        run: terraform validate
