@@ -528,47 +528,85 @@ Start here:
 
 ## Local AWS Platform with Floci
 
-This repository includes a local AWS-style DevSecOps lab built using Floci, Terraform, AWS CLI, and GitHub Actions.
+This repository includes a local AWS-style DevSecOps platform built using Floci, Terraform, AWS CLI, Docker, Bash, and GitHub Actions.
+
+No real AWS account is used.
 
 ```mermaid
 flowchart TD
-    A[Terraform] --> B[Floci Local AWS Emulator]
-    B --> C[S3]
-    B --> D[IAM]
-    B --> E[Secrets Manager]
+    A[Developer Workstation / WSL] --> B[Docker Compose]
+    B --> C[Floci Local AWS Emulator]
 
-    C --> F[Secure Artifact Bucket]
-    D --> G[Least Privilege CI User]
-    E --> H[Application Metadata Secret]
+    D[Terraform] --> C
+    E[AWS CLI] --> C
+    F[Bash Scripts] --> C
 
-    I[GitHub Actions] --> J[Terraform fmt/init/validate]
-    J --> A
+    C --> G[S3]
+    C --> H[IAM]
+    C --> I[Secrets Manager]
+    C --> J[SSM Parameter Store]
+    C --> K[Lambda]
+    C --> L[CloudWatch Logs]
+    C --> M[EC2]
+    C --> N[Security Groups]
+    C --> O[ECR]
+
+    P[GitHub Actions] --> Q[Terraform fmt/init/validate]
 ```
 
 ### Completed Floci Labs
 
-| Lab | Focus |
-|---|---|
-| 01 | Local AWS emulator with Docker Compose |
-| 03 | Secure S3 bucket using Terraform |
-| 04 | IAM least privilege using Terraform |
-| 05 | Secrets Manager using Terraform |
-| 06 | IAM access key risk and Terraform state exposure |
-| 07 | Secure S3 artifact platform mini-project |
-| 08 | GitHub Actions Terraform validation |
+| Lab | Focus | Status |
+|---|---|---|
+| 01 | Local AWS emulator with Docker Compose | Completed |
+| 03 | Terraform secure S3 bucket | Completed |
+| 04 | Terraform IAM least privilege | Completed |
+| 05 | Terraform Secrets Manager | Completed |
+| 06 | IAM access key risk and Terraform state exposure | Completed |
+| 07 | Secure S3 artifact platform mini-project | Completed |
+| 08 | GitHub Actions Terraform validation | Completed |
+| 09 | Root README dashboard update | Completed |
+| 10 | Terraform SSM Parameter Store | Completed |
+| 11 | Terraform Lambda basics | Completed |
+| 12 | Terraform CloudWatch Logs | Completed |
+| 13 | Terraform EC2 basics | Completed |
+| 14 | Terraform Security Groups | Completed |
+| 15 | Terraform ECR image registry | Completed |
+| 16 | Terraform modules for Floci | Completed |
+| 17 | Local CI/CD artifact upload to S3 | Completed |
+
+Full Floci index:
+
+```text
+labs/floci/README.md
+```
 
 ### Key Skills Demonstrated
 
 ```text
 Local AWS emulation
-Terraform automation
+Terraform infrastructure automation
+AWS CLI operations
 S3 security
 IAM least privilege
 Secrets management
-Secret scanning with Gitleaks
-Terraform CI validation
-Cloud security documentation
+SSM Parameter Store
+Lambda basics
+CloudWatch Logs
+EC2 basics
+Security Groups
+ECR image registry
+Terraform modules
+CI/CD artifact upload simulation
+Gitleaks secret scanning
+GitHub Actions Terraform validation
 ```
+
+### Interview Summary
+
+I built a local AWS-style DevSecOps platform using Floci and Terraform. I provisioned secure S3 buckets, IAM users and policies, Secrets Manager secrets, SSM parameters, Lambda functions, CloudWatch log groups, EC2-style instances, security groups, and ECR repositories. I also created a secure artifact platform mini-project and simulated CI/CD artifact upload to local S3. This demonstrates infrastructure automation, cloud security basics, least privilege, secret safety, and local-first AWS learning without cloud cost.
+
+---
 
 ---
 
