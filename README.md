@@ -366,19 +366,20 @@ Incident notes are written using this structure:
 
 ## Tools Covered
 
+## Tools Covered
+
 | Category | Tools |
 |---|---|
 | Operating System | Linux |
-| Version Control | Git, GitHub |
+| Version Control | Git, GitHub, GitLab |
 | Containers | Docker, Docker Compose |
 | Kubernetes | Kubernetes, Kind, kubectl, Helm |
 | Infrastructure as Code | Terraform |
-| CI/CD | GitHub Actions, GitLab CI/CD, Jenkins |
+| CI/CD | GitHub Actions, GitLab CI/CD |
 | Security | Trivy, Gitleaks, Semgrep, SonarQube |
-| Policy & Governance | Kyverno, OPA |
+| Policy & Governance | Kyverno |
 | Monitoring | Prometheus, Grafana, Loki |
 | Cloud Concepts | AWS, Azure |
-| GitOps | Argo CD |
 | AI for DevOps | Ollama, local LLM workflows |
 
 ---
