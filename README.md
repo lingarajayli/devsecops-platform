@@ -526,6 +526,50 @@ Start here:
 5. Evidence files inside each lab
 ```
 
+## Local AWS Platform with Floci
+
+This repository includes a local AWS-style DevSecOps lab built using Floci, Terraform, AWS CLI, and GitHub Actions.
+
+```mermaid
+flowchart TD
+    A[Terraform] --> B[Floci Local AWS Emulator]
+    B --> C[S3]
+    B --> D[IAM]
+    B --> E[Secrets Manager]
+
+    C --> F[Secure Artifact Bucket]
+    D --> G[Least Privilege CI User]
+    E --> H[Application Metadata Secret]
+
+    I[GitHub Actions] --> J[Terraform fmt/init/validate]
+    J --> A
+```
+
+### Completed Floci Labs
+
+| Lab | Focus |
+|---|---|
+| 01 | Local AWS emulator with Docker Compose |
+| 03 | Secure S3 bucket using Terraform |
+| 04 | IAM least privilege using Terraform |
+| 05 | Secrets Manager using Terraform |
+| 06 | IAM access key risk and Terraform state exposure |
+| 07 | Secure S3 artifact platform mini-project |
+| 08 | GitHub Actions Terraform validation |
+
+### Key Skills Demonstrated
+
+```text
+Local AWS emulation
+Terraform automation
+S3 security
+IAM least privilege
+Secrets management
+Secret scanning with Gitleaks
+Terraform CI validation
+Cloud security documentation
+```
+
 ---
 
 ## Repository Status
