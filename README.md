@@ -89,7 +89,6 @@ mindmap
     CI/CD
       GitHub Actions
       GitLab CI/CD
-      Jenkins
     Infrastructure
       Terraform
       AWS Concepts
@@ -356,7 +355,6 @@ Incident notes are written using this structure:
 | `terraform/` | Infrastructure as Code practice |
 | `ci/github-actions/` | GitHub Actions workflows |
 | `ci/gitlab-ci/` | GitLab CI/CD examples |
-| `ci/jenkins/` | Jenkins pipeline examples |
 | `security/` | DevSecOps scanning and security practices |
 | `monitoring/` | Observability stack examples |
 | `scripts/` | Bash and automation scripts |
