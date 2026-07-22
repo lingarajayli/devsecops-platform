@@ -34,6 +34,13 @@ jobs:
           - labs/floci/05-terraform-secrets-manager
           - labs/floci/06-terraform-iam-access-key-risk
           - labs/floci/07-secure-s3-artifact-platform
+          - labs/floci/10-terraform-ssm-parameter-store
+          - labs/floci/11-terraform-lambda-basics
+          - labs/floci/12-terraform-cloudwatch-logs
+          - labs/floci/13-terraform-ec2-basics
+          - labs/floci/14-terraform-security-groups
+          - labs/floci/15-terraform-ecr-image-registry
+          - labs/floci/16-terraform-modules-for-floci
 
     steps:
       - name: Checkout repository
