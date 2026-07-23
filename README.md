@@ -364,8 +364,6 @@ Incident notes are written using this structure:
 
 ## Tools Covered
 
-## Tools Covered
-
 | Category | Tools |
 |---|---|
 | Operating System | Linux |
@@ -468,27 +466,30 @@ Safe remediation
 
 ```mermaid
 pie title Portfolio Progress Snapshot
-    "Kubernetes Series 01 Completed" : 7
-    "Next Labs Planned" : 10
+    "Kubernetes Troubleshooting" : 7
+    "DevSecOps Security Labs" : 9
+    "Floci Local AWS Labs" : 16
 ```
 
 Completed:
 
 ```text
 Kubernetes Troubleshooting Labs: Series 01
+DevSecOps Security Labs
+GitHub Actions Security Gates
+Floci Local AWS Platform Labs
+Terraform Validation Workflow
+Prometheus and Grafana Observability Lab
 Incident Notes Index
-Kubernetes Labs Landing Page
-Series Summary Page
 ```
 
 Next planned:
 
 ```text
+GitLab CI/CD pipeline module
 Kubernetes Troubleshooting Labs: Series 02
-DevSecOps scanning labs
-GitHub Actions CI validation
-Terraform infrastructure modules
-Monitoring stack with Prometheus and Grafana
+Ansible automation labs
+Advanced monitoring and logging with Loki
 ```
 ### Terraform Validation Workflow
 
